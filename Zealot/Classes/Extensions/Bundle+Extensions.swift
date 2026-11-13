@@ -9,11 +9,15 @@ import Foundation
 
 extension Bundle {
     final class func localizedString(forKey key: String) -> String {
-        guard var path = zealotBundlePath() else {
+        guard let path = zealotBundlePath(),
+              let resourceBundle = Bundle(path: path) else {
             return key
         }
 
-        return Bundle(path: path)?.localizedString(forKey: key, value: key, table: nil) ?? key
+        let koreanBundle = resourceBundle.path(forResource: "ko", ofType: "lproj")
+            .flatMap(Bundle.init(path:)) ?? resourceBundle
+
+        return koreanBundle.localizedString(forKey: key, value: key, table: nil)
     }
     
     /// Constants used in the `Bundle` extension.

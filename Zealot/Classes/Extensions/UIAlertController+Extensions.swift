@@ -112,7 +112,7 @@ class WindowHandler: NSObject {
         window?.isHidden = true
         window?.removeFromSuperview()
         window = nil
-        mainWindow.makeKeyAndVisible()
+//        mainWindow.makeKeyAndVisible()
         mainWindow = nil
     }
 }
