@@ -44,15 +44,18 @@ import Zealot
 ```swift
 // Swift
 // 单个渠道
-let zealot = Zealot(endpoint: "http://zealot.com", channelKey: "...")
+let zealot = Zealot(endpoint: "https://zealot.example.com", channelKey: "...")
 zealot.checkVersion()
 
 // 多个渠道，比如测试版本，内测版本
-let zealot = Zealot(endpoint: "http://zealot.com",
+let zealot = Zealot(endpoint: "https://zealot.example.com",
                  channelKeys: [
                    "beta": "xxxxxxx",
                    "test": "yyyyyyy"],
           default_enviroment: "beta")
+
+// 安装文件托管在受信任 CDN 时，明确添加其 HTTPS 域名。
+zealot.allowedInstallHosts.append("downloads.example.com")
 
 // 最后触发监测方法
 zealot.checkVersion()
@@ -61,11 +64,11 @@ zealot.checkVersion()
 ```objective-c
 // Objective-C
 // 单个渠道
-Zealot *zealot = [[Zealot alloc] initWithEndpoint:@"http://zealot.com"
+Zealot *zealot = [[Zealot alloc] initWithEndpoint:@"https://zealot.example.com"
                                        channelKey:@"..."];
 
 // 多个渠道，比如测试版本，内测版本
-Zealot *zealot = [[Zealot alloc] initWithEndpoint:@"http://zealot.com"
+Zealot *zealot = [[Zealot alloc] initWithEndpoint:@"https://zealot.example.com"
                                           channelKeys:@{
                                               @"beta": @"xxxxxxx",
                                               @"gray": @"yyyyyyy"
